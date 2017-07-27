@@ -1,0 +1,129 @@
+
+<div id = "sidebar2" class="col-sm-3 col-md-2 sidebar" >
+  <ul class="nav nav-sidebar">
+    <li class="active"><a href="#budget">Overview <span class="sr-only">(current)</span></a></li>
+    <li><a href="#">Reports</a></li>
+    <li><a href="#calendar">Analytics</a></li>
+    <li><a href="#main">Import</a></li>
+  </ul>
+
+      <ul class="nav nav-sidebar">
+        <li><b>CUENTAS</b></li>
+        <li><a ng-repeat = 'cuenta in cuentas track by $index' ng-click="actualizarTabla(cuenta)">{{cuenta}}</a></li>
+      </ul>
+      <ul class="nav nav-sidebar">
+        <li><b>ESTABLECIMIENTOS</b></li>
+        <li><a ng-repeat = 'establecimiento in establecimientos track by $index' ng-click="actualizarTablaE(establecimiento)">{{establecimiento}}</a></li>
+      </ul>
+</div>
+
+
+
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Dashboard</h1>
+          <label value="type"/>
+
+          <div ng-hide="loading" id="g" class="row placeholders">
+            loading.......
+          </div>
+          <div  ng-if="loading" id="graficas" class="row placeholders">
+            <div class="col-xs-8 col-sm-4 placeholder">
+              <canvas id="doughnut" class="chart chart-pie"
+                chart-data="dataA" chart-labels="labelsA">
+              </canvas>
+              <h4>TOTAL</h4>
+              <span class="text-muted">Gastos</span>
+            </div>
+        <!--    <div class="col-xs-6 col-sm-3 placeholder">
+              <canvas id="bar" class="chart chart-bar"
+                chart-data="data2" chart-labels="labels2" chart-series="series2">
+              </canvas>
+              <h4>Establecimiento</h4>
+              <span class="text-muted">Consumos</span>
+            </div>-->
+            <div class="col-xs-8 col-sm-4 placeholder">
+              <canvas id="doughnut2" class="chart chart-doughnut"
+                chart-data="dataB" chart-labels="labelsB">
+              </canvas>
+              <h4>TCVISA</h4>
+              <span class="text-muted">Gastos</span>
+            </div>
+            <div class="col-xs-8 col-sm-4 placeholder">
+              <canvas id="doughnut3" class="chart chart-doughnut"
+                chart-data="dataC" chart-labels="labelsC">
+              </canvas>
+              <h4>CITI</h4>
+              <span class="text-muted">Gastos</span>
+            </div>
+          </div>
+          <div  ng-if="loading" id="graficas" class="row placeholders">
+            <div class="col-xs-16 col-sm-8 placeholder">
+              <canvas id="doughnut" class="chart chart-bar"
+                chart-data="data2" chart-labels="labelsA">
+              </canvas>
+              <h4>TOTAL</h4>
+              <span class="text-muted">Gastos</span>
+            </div>
+        <!--    <div class="col-xs-6 col-sm-3 placeholder">
+              <canvas id="bar" class="chart chart-bar"
+                chart-data="data2" chart-labels="labels2" chart-series="series2">
+              </canvas>
+              <h4>Establecimiento</h4>
+              <span class="text-muted">Consumos</span>
+            </div>-->
+            <!-- <div class="col-xs-8 col-sm-4 placeholder">
+              <canvas id="doughnut2" class="chart chart-doughnut"
+                chart-data="dataB" chart-labels="labelsB">
+              </canvas>
+              <h4>TCVISA</h4>
+              <span class="text-muted">Gastos</span>
+            </div> -->
+            <!-- <div class="col-xs-8 col-sm-4 placeholder">
+              <canvas id="doughnut3" class="chart chart-doughnut"
+                chart-data="dataC" chart-labels="labelsC">
+              </canvas>
+              <h4>CITI</h4>
+              <span class="text-muted">Gastos</span>
+            </div> -->
+          </div>
+
+          <h2 class="sub-header">DETALLE</h2>
+          <div id="detalle" class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Movimiento</th>
+                  <th>Cuenta</th>
+                  <th>Fecha</th>
+                  <th>Establecimiento/Agencia</th>
+                  <th>Moneda</th>
+                  <th>Debito/Consumo</th>
+                  <th>Credito</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat = 'entrada in entradas'>
+                  <td>{{entrada.tipo}}</td>
+                  <td>{{entrada.cuenta}}</td>
+                  <td>{{entrada.fecha}}</td>
+                  <td>{{entrada.agencia}}</td>
+                  <td>{{entrada.moneda}}</td>
+                  <td ng-if='entrada.tipo === "DEBITO" || entrada.tipo === "CONSUMO" ' align="center">{{(entrada.monto/100).toFixed(2)}}</td>
+                  <td ng-if='entrada.tipo === "DEBITO" || entrada.tipo === "CONSUMO" ' align="center"></td>
+                  <td ng-if='entrada.tipo === "CREDITO"' align="center"></td>
+                  <td ng-if='entrada.tipo === "CREDITO"' align="center">{{(entrada.monto/100).toFixed(2)}}</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td ><b>Totales:</b></td>
+                  <td  align="center"><b>{{(tdebito/100).toFixed(2)}}</b></td>
+                  <td  align="center"><b>{{(tcredito/100).toFixed(2)}}</b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>

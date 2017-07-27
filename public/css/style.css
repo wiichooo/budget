@@ -1,0 +1,12 @@
+#btnsteps {
+  .btn width: 100%;
+}
+
+
+.glyphicon glyphicon-menu-right {
+float: right;
+margin-top: 2px;
+margin-right: -6px;
+}
+
+p.tab-space {padding-left:5em;}

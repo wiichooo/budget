@@ -1,0 +1,32 @@
+<div id = "sidebar2" class="col-sm-3 col-md-2 sidebar" >
+  <ul class="nav nav-sidebar">
+    <li class="active"><a href="#budget">Overview <span class="sr-only">(current)</span></a></li>
+    <li><a href="#">Reports</a></li>
+    <li><a href="#calendar">Analytics</a></li>
+    <li><a href="#main">Import</a></li>
+  </ul>
+
+      <ul class="nav nav-sidebar">
+        <li><b>CUENTAS</b></li>
+        <li><a ng-repeat = 'cuenta in cuentas track by $index' ng-click="actualizarTabla(cuenta)">{{cuenta}}</a></li>
+      </ul>
+      <ul class="nav nav-sidebar">
+        <li><b>ESTABLECIMIENTOS</b></li>
+        <li><a ng-repeat = 'establecimiento in establecimientos track by $index' ng-click="actualizarTablaE(establecimiento)">{{establecimiento}}</a></li>
+      </ul>
+</div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+<div>
+  <input ng-model="txt"
+            onchange="angular.element(this).scope().fileChanged()"
+            type="file" accept=".txt" id="fileInput"/>
+</div>
+<br/>
+<div>
+  <textarea ng-model="txtFile" readonly="true" style="width:99%; height:500px" disabled></textarea>
+</div>
+
+
+</div>
